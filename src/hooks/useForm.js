@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo } from "react"
 
 export default function useForm(initialValues = []) {
   const initialState = useMemo(
@@ -7,19 +7,19 @@ export default function useForm(initialValues = []) {
         return {
           ...acc,
           [name]: value
-        };
+        }
       }, {}),
     [JSON.stringify(initialValues)]
-  );
-  const [formData, setFormData] = useState(initialState);
+  )
+  const [formData, setFormData] = useState(initialState)
 
   const setData = ({ name, value } = {}) => {
-    setFormData(d => ({ ...d, [name]: value }));
-  };
+    setFormData(d => ({ ...d, [name]: value }))
+  }
 
   const reset = () => {
-    setFormData(initialState);
-  };
+    setFormData(initialState)
+  }
 
-  return [formData, setData, { reset }];
+  return [formData, setData, { reset }]
 }

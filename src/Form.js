@@ -1,8 +1,8 @@
-import React from "react";
-import useForm from "./hooks/useForm";
+import React from "react"
+import useForm from "./hooks/useForm"
 
 export default function Form({ fields }) {
-  const [formData, setFormData, { reset }] = useForm(fields);
+  const [formData, setFormData, { reset }] = useForm(fields)
   return (
     <div>
       {fields.map(({ label, name }) => (
@@ -24,5 +24,5 @@ export default function Form({ fields }) {
       ))}
       <button onClick={reset}>Reset</button>
     </div>
-  );
+  )
 }
