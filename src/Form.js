@@ -14,11 +14,17 @@ export default function Form({ fields }) {
               id={name}
               name={name}
               type="input"
-              value={formData[name]}
-              onChange={e =>
-                setFormData({ name: e.target.name, value: e.target.value })
-              }
+              value={formData[name].value}
+              onChange={e => setFormData(name, { value: e.target.value })}
+              disabled={formData[name].disable}
             />
+            <button
+              onClick={() =>
+                setFormData(name, state => ({ disable: !state.disable }))
+              }
+            >
+              Disable
+            </button>
           </label>
         </div>
       ))}

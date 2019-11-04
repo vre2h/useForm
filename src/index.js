@@ -5,9 +5,9 @@ import "./styles.css"
 import Form from "./Form"
 
 const fields = [
-  { name: "login", value: "", label: "Login" },
-  { name: "password", value: "", label: "Password" },
-  { name: "secPassword", value: "", label: "Password 2" }
+  { name: "login", value: "", disable: false, label: "Login" },
+  { name: "password", value: "", disable: false, label: "Password" },
+  { name: "secPassword", value: "", disable: false, label: "Password 2" }
 ]
 
 function App() {

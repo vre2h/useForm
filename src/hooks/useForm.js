@@ -3,18 +3,27 @@ import { useState, useMemo } from "react"
 export default function useForm(initialValues = []) {
   const initialState = useMemo(
     () =>
-      initialValues.reduce((acc, { name, value }) => {
+      initialValues.reduce((acc, { name, ...props }) => {
         return {
           ...acc,
-          [name]: value
+          [name]: props
         }
       }, {}),
     [JSON.stringify(initialValues)]
   )
   const [formData, setFormData] = useState(initialState)
 
-  const setData = ({ name, value } = {}) => {
-    setFormData(d => ({ ...d, [name]: value }))
+  const setData = (name, stateUpdater) => {
+    let newState = {}
+
+    if (typeof stateUpdater === "function") {
+      newState = {
+        [name]: { ...formData[name], ...stateUpdater(formData[name]) }
+      }
+    } else if (typeof stateUpdater === "object") {
+      newState = { [name]: { ...formData[name], ...stateUpdater } }
+    }
+    setFormData(d => ({ ...d, ...newState }))
   }
 
   const reset = () => {
